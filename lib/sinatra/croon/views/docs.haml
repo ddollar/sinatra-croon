@@ -1,0 +1,41 @@
+!!! 5
+
+%html
+
+  %head
+    %title API Documentation
+    %link{ :rel => "stylesheet", :href => "/docs.css" }
+
+  %body
+
+    #content
+
+      %h1
+        %a{ :href => '/' } API Documentation
+
+      - docs.each do |doc|
+
+        .api
+
+          .url
+            %a
+              = doc[:verb].upcase
+              = doc[:uri]
+
+          .description
+            = doc[:description]
+
+          - if (doc[:params] || []).length > 0
+            .params
+              - doc[:params].each do |param|
+                .param
+                  .type{ :class => (param[:required] && "required") }
+                    = (param[:required]) ? "REQUIRED" : "OPTIONAL"
+                  .name= escape_html(param[:name])
+                  .description= param[:description]
+
+          %code.request
+            = display_code doc[:request]
+
+          %code.response
+            = display_code doc[:response]

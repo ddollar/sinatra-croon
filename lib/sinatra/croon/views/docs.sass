@@ -1,0 +1,106 @@
+*
+  :font-family Helvetica, Arial, sans-serif
+
+=code_title
+  :display block
+  :padding 6px 10px
+  :font-weight bold
+  :background #ccc
+  :color #333
+  :margin-left -12px
+  :margin-right -12px
+  :margin-top -12px
+  :margin-bottom 12px
+
+h2
+  :background #555
+  :color #fff
+  :border 1px #666 solid
+  :padding 10px
+  a
+    :color #fff
+    :text-decoration none
+
+.api
+  :margin-bottom 24px
+  :background #eee
+  :border 1px #ccc solid
+
+  .url
+    :padding 6px 10px
+    :background #aaa
+    :border-bottom 1px #ccc solid
+    a
+      :color #333
+      :font-size 1.6em
+      :font-weight bold
+      :font-family monospace
+
+  .description
+    :padding 12px
+
+  code
+    :font-family Monaco, monospace
+    :white-space pre
+    :padding 12px
+    :display block
+
+  .params
+    :margin-bottom 10px
+    :padding 12px
+    :display block
+    &:before
+      +code_title
+      :content "Parameters"
+    .param
+      :line-height 30px
+      .name
+        :display inline
+        :font-weight bold
+        :font-family monospace
+        :font-size 1.2em
+      .type
+        :font-weight bold
+        :font-size 0.6em
+        :color #999
+        :display inline-block
+        :width 65px
+      .required
+        :color #333
+      .description
+        :display inline
+
+  .request
+    &:before
+      +code_title
+      :content "Request"
+
+  .response
+    &:before
+      +code_title
+      :content "Response"
+
+body
+  :margin 0
+  
+#content
+  :width 800px
+  :margin-left auto
+  :margin-right auto
+
+#index
+  .section
+    :margin-bottom 20px
+  .summarydoc
+    :border 1px #ccc solid
+    :padding 12px
+    :margin-top 10px
+    :background #eee
+    .path
+      :margin-bottom 10px
+      a
+        :font-family monospace
+        :font-weight bold
+        :font-size 1.4em
+    .description
+      :color #666
