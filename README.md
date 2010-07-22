@@ -41,3 +41,5 @@ documentation browser be available to you.
 ## Web-based browser
 
   Sinatra::Croon will create a route at `/docs` to display your documentation.
+
+  See an example at [http://sinatra-croon-example.heroku.com](http://sinatra-croon-example.heroku.com)
