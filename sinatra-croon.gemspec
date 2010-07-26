@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{sinatra-croon}
-  s.version = "0.0.1"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David Dollar"]
-  s.date = %q{2010-07-21}
+  s.date = %q{2010-07-26}
   s.description = %q{Create documentation for an API built in Sinatra.}
   s.email = %q{ddollar@gmail.com}
   s.extra_rdoc_files = [
@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
      "spec/sinatra/croon_spec.rb",
      "spec/spec_helper.rb"
   ]
+  s.has_rdoc = false
   s.homepage = %q{http://daviddollar.org/}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
