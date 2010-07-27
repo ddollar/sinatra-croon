@@ -57,10 +57,22 @@ module Sinatra
       def self.parse_route_documentation(filename, line)
         all_lines   = File.read(filename).split("\n").reverse
         index_start = all_lines.length - line + 1
-        num_lines   = all_lines[index_start..-1].index { |l| !['', '#'].include?(l.strip[0..0]) }
-        doc_lines   = all_lines[index_start, num_lines].reverse
+        lines       = []
+        started     = false
 
-        parse_comments(doc_lines)
+        all_lines[index_start..-1].each do |line|
+          case line.strip[0..0]
+            when '#' then
+              started = true
+              lines << line.strip
+            when '' then
+              break(2) if started
+            else
+              break(2)
+          end
+        end
+
+        parse_comments(lines.reverse)
       end
 
       def self.parse_comments(comments)
