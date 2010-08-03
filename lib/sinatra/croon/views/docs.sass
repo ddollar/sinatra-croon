@@ -12,14 +12,42 @@
   :margin-top -12px
   :margin-bottom 12px
 
-h2
-  :background #555
-  :color #fff
-  :border 1px #666 solid
-  :padding 10px
+h1
+  :background #ccc
+  :width 100%
+  :margin 0
+  :padding 10px 20px
   a
-    :color #fff
+    :color #000
     :text-decoration none
+
+h2
+  :margin 0
+  :margin-bottom 20px
+  :padding 0
+
+ul
+  :margin 0
+  :padding 0
+
+ul#sidebar
+  :float left
+  :border-right 1px #ccc solid
+  :padding-top 10px
+  & > li
+    :margin 0
+    :padding 10px 20px
+    :list-style-type none
+    :font-weight bold
+    a
+      :text-decoration none
+  ul
+    :margin-top 10px
+    li
+      :list-style-type none
+      :padding 6px 10px
+      :font-size 0.9em
+      :font-family Courier, monospace
 
 .api
   :margin-bottom 24px
@@ -28,10 +56,10 @@ h2
 
   .url
     :padding 6px 10px
-    :background #aaa
+    :background #333
     :border-bottom 1px #ccc solid
     a
-      :color #333
+      :color #fff
       :font-size 1.6em
       :font-weight bold
       :font-family monospace
@@ -40,7 +68,7 @@ h2
     :padding 12px
 
   code
-    :font-family Monaco, monospace
+    :font-family Courier, monospace
     :white-space pre
     :padding 12px
     :display block
@@ -73,20 +101,25 @@ h2
   .request
     &:before
       +code_title
-      :content "Request"
+      :content "Example Request"
+      :font-family Helvetica, Arial, sans-serif
 
   .response
     &:before
       +code_title
-      :content "Response"
+      :content "Example Response"
+      :font-family Helvetica, Arial, sans-serif
 
 body
   :margin 0
   
 #content
-  :width 800px
-  :margin-left auto
-  :margin-right auto
+  :float left
+  :min-width 800px
+  :padding 20px
+  :margin-left -1px
+  :border-left 1px #ccc solid
+  :padding-bottom 0
 
 #index
   .section

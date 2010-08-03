@@ -17,10 +17,14 @@ module Sinatra
         end
       end
 
-      app.get '/docs' do
+      app.get %r{^/docs/?([\w]+)?/?$} do |section|
         pass do
           template = File.read(File.expand_path("../croon/views/docs.haml", __FILE__))
-          haml template, :locals => { :docs => documentation }
+          sections = documentation.map { |doc| doc[:section] }.sort_by { |s| s.to_s }
+          haml template, :locals => {
+            :docs => documentation.group_by { |doc| doc[:section] },
+            :current_section => sections.detect { |s| urlify_section(s) == section }
+          }
         end
       end
     end
@@ -50,6 +54,14 @@ module Sinatra
 
       def documentation
         self.class.documentation
+      end
+
+      def documentation_base_uri
+        env["REQUEST_PATH"].gsub(/#{env["PATH_INFO"]}\/?$/, '')
+      end
+
+      def urlify_section(section)
+        section.to_s.downcase.gsub(' ', '_')
       end
     end
 

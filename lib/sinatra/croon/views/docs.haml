@@ -3,39 +3,58 @@
 %html
 
   %head
-    %title API Documentation
-    %link{ :rel => "stylesheet", :href => "docs.css" }
+    %title
+      API Documentation ::
+      = current_section || "General"
+
+    %link{ :rel => "stylesheet", :href => "#{documentation_base_uri}/docs.css" }
 
   %body
 
+    %h1
+      %a{ :href => "#{documentation_base_uri}/docs" } API Documentation
+
+    %ul#sidebar
+      - docs.keys.sort_by { |k| k.to_s }.each do |section|
+        %li
+          %a{ :href => "#{documentation_base_uri}/docs/#{urlify_section(section)}"}
+            = section || "General"
+          %ul.section
+            - docs[section].each do |doc|
+              %li
+                = doc[:verb].upcase
+                = doc[:uri]
+
     #content
 
-      %h1
-        %a{ :href => '/' } API Documentation
+      %h2
+        = current_section || "General"
 
-      - docs.each do |doc|
+      - docs[current_section].each do |doc|
 
-        .api
+        #doc
 
-          .url
-            %a
-              = doc[:verb].upcase
-              = doc[:uri]
+          .api
 
-          .description
-            = doc[:description]
+            .url
+              %a
+                = doc[:verb].upcase
+                = doc[:uri]
 
-          - if (doc[:params] || []).length > 0
-            .params
-              - doc[:params].each do |param|
-                .param
-                  .type{ :class => (param[:required] && "required") }
-                    = (param[:required]) ? "REQUIRED" : "OPTIONAL"
-                  .name= escape_html(param[:name])
-                  .description= param[:description]
+            .description
+              = doc[:description]
 
-          %code.request
-            = display_code doc[:request]
+            - if (doc[:params] || []).length > 0
+              .params
+                - doc[:params].each do |param|
+                  .param
+                    .type{ :class => (param[:required] && "required") }
+                      = (param[:required]) ? "REQUIRED" : "OPTIONAL"
+                    .name= escape_html(param[:name])
+                    .description= param[:description]
 
-          %code.response
-            = display_code doc[:response]
+            %code.request
+              = display_code doc[:request]
+
+            %code.response
+              = display_code doc[:response]
