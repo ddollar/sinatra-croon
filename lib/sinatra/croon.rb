@@ -57,7 +57,7 @@ module Sinatra
       end
 
       def documentation_base_uri
-        env["REQUEST_URI"].gsub(/#{env["PATH_INFO"]}\/?$/, '')
+        env["REQUEST_URI"].to_s.gsub(/#{env["PATH_INFO"]}\/?$/, '')
       end
 
       def urlify_section(section)
