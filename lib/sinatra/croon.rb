@@ -1,4 +1,5 @@
 require "haml"
+require "sass"
 require "sinatra/base"
 
 module Sinatra
@@ -10,22 +11,18 @@ module Sinatra
       @app = app
 
       app.get '/docs.css' do
-        pass do
-          content_type "text/css"
-          template = File.read(File.expand_path("../croon/views/docs.sass", __FILE__))
-          sass template
-        end
+        content_type "text/css"
+        template = File.read(File.expand_path("../croon/views/docs.sass", __FILE__))
+        sass template
       end
 
       app.get %r{^/docs/?([\w]+)?/?$} do |section|
-        pass do
-          template = File.read(File.expand_path("../croon/views/docs.haml", __FILE__))
-          sections = documentation.map { |doc| doc[:section] }.sort_by { |s| s.to_s }
-          haml template, :locals => {
-            :docs => documentation.group_by { |doc| doc[:section] },
-            :current_section => sections.detect { |s| urlify_section(s) == section }
-          }
-        end
+        template = File.read(File.expand_path("../croon/views/docs.haml", __FILE__))
+        sections = documentation.map { |doc| doc[:section] }.sort_by { |s| s.to_s }
+        haml template, :locals => {
+          :docs => documentation.group_by { |doc| doc[:section] },
+          :current_section => sections.detect { |s| urlify_section(s) == section }
+        }
       end
     end
 
