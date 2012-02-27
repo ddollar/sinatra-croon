@@ -10,7 +10,7 @@ module Sinatra
       app.helpers Croon::Helpers
       @app = app
 
-      app.get '/docs.css' do
+      app.get '/docs/docs.css' do
         content_type "text/css"
         template = File.read(File.expand_path("../croon/views/docs.sass", __FILE__))
         sass template
@@ -54,7 +54,7 @@ module Sinatra
       end
 
       def documentation_base_uri
-        self.request.base_url
+        self.request.url
       end
 
       def urlify_section(section)
