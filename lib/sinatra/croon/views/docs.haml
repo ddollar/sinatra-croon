@@ -12,12 +12,12 @@
   %body
 
     %h1
-      %a{ :href => "#{documentation_base_uri}/docs" } API Documentation
+      %a{ :href => "#{documentation_base_uri}" } API Documentation
 
     %ul#sidebar
       - docs.keys.sort_by { |k| k.to_s }.each do |section|
         %li
-          %a{ :href => "#{documentation_base_uri}/docs/#{urlify_section(section)}"}
+          %a{ :href => "#{documentation_base_uri}/#{urlify_section(section)}"}
             = section || "General"
           %ul.section
             - docs[section].each do |doc|
