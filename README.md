@@ -15,6 +15,7 @@ documentation browser be available to you.
 
     # Create an application.
     #
+    # @header <header-name> header-value
     # @param <name>  the name of the application to create
     # @param [stack] the stack on which to create the application
     #
