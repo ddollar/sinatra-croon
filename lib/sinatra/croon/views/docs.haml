@@ -43,6 +43,14 @@
 
             .description
               = doc[:description]
+            - if (doc[:headers] || []).length > 0
+              .headers
+                - doc[:headers].each do |param|
+                  .param
+                    .type{ :class => (param[:required] && "required") }
+                      = (param[:required]) ? "REQUIRED" : "OPTIONAL"
+                    .name= escape_html(param[:name])
+                    .description= param[:description]
 
             - if (doc[:params] || []).length > 0
               .params

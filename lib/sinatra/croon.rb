@@ -89,11 +89,12 @@ module Sinatra
 
         comments.inject({}) do |parsed, comment|
           case comment.strip
-            when /\A#\s*@param\s+(.+?)\s+(.+)/ then
-              parsed[:params] ||= []
-              required = $1[0..0] == '<'
-              name = $1[1..-2]
-              parsed[:params] << { :name => name, :description => $2, :required => required }
+            when /\A#\s*(@header|@param)\s+(.+?)\s+(.+)/ then
+              key = $1 == '@header' ? :headers : :params
+              parsed[key] ||= []
+              required = $2[0..0] == '<'
+              name = $2[1..-2]
+              parsed[key] << { :name => name, :description => $3, :required => required }
             when /\A#\s*@(\w+)\s*(.*)\Z/ then
               key = $1.to_sym
               parsed[key] ||= []
