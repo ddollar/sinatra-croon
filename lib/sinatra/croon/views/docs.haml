@@ -11,6 +11,9 @@
 
   %body
 
+    %h1
+      %a{ :href => "#{documentation_base_uri}" } API Documentation
+
     %ul#sidebar
       - docs.keys.sort_by { |k| k.to_s }.each do |section|
         %li
@@ -23,9 +26,7 @@
                 = doc[:uri]
 
     #content
-
-      %h2
-        = current_section || "General"
+      
 
       - docs[current_section].each do |doc|
 
