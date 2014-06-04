@@ -4,21 +4,18 @@
 
   %head
     %title
-      Sinatra Rest Api ::
-      = current_section || "General"
+      Sinatra Rest Api
 
     %link{ :rel => "stylesheet", :href => "#{documentation_base_uri}/docs.css" }
 
   %body
 
     %h1
-      %a{ :href => "#{documentation_base_uri}" } API Documentation
+      %a{ :href => "#{documentation_base_uri}" } Sinatra Rest Api Documentation
 
     %ul#sidebar
       - docs.keys.sort_by { |k| k.to_s }.each do |section|
-        %li
-          %a{ :href => "#{documentation_base_uri}/#{urlify_section(section)}"}
-            = section || "General"
+        %li          
           %ul.section
             - docs[section].each do |doc|
               %li
