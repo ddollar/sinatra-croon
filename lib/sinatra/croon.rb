@@ -5,7 +5,6 @@ require "sinatra/base"
 module Sinatra
   module Croon
     VERSION = "0.2.1"
-
     def self.registered(app)
       app.helpers Croon::Helpers
       @app = app
@@ -34,8 +33,8 @@ module Sinatra
       line = ""
       if route_location.match(/^[A-Za-z]:.*/)
         parts = route_location.split(':')
-	file = parts[0] + ":" + parts[1]
-	line = parts[2]
+        file = parts[0] + ":" + parts[1]
+        line = parts[2]
       else
         file, line = route_location.split(':')
       end
