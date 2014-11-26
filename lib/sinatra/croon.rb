@@ -5,7 +5,6 @@ require "sinatra/base"
 module Sinatra
   module Croon
     VERSION = "0.2.1"
-
     def self.registered(app)
       app.helpers Croon::Helpers
       @app = app
@@ -30,7 +29,15 @@ module Sinatra
       return if verb.to_s == "HEAD"
 
       route_location = caller(1).reject { |line| line =~ /sinatra\/base/ }.first
-      file, line = route_location.split(':')
+      file = ""
+      line = ""
+      if route_location.match(/^[A-Za-z]:.*/)
+        parts = route_location.split(':')
+        file = parts[0] + ":" + parts[1]
+        line = parts[2]
+      else
+        file, line = route_location.split(':')
+      end
       doc = Croon::Parser.parse_route_documentation(file, line.to_i)
 
       if doc[:description]
