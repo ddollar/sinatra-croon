@@ -77,13 +77,10 @@ ul#sidebar
     :word-break break-all
     :white-space normal
 
-  .params
+  .params, .headers
     :margin-bottom 10px
     :padding 12px
     :display block
-    &:before
-      +code_title
-      :content "Parameters"
     .param
       :line-height 30px
       .name
@@ -102,6 +99,15 @@ ul#sidebar
       .description
         :display inline
 
+  .params
+    &:before
+      +code_title
+      :content "Parameters"
+
+  .headers
+    &:before
+      +code_title
+      :content "Headers"
   .request
     &:before
       +code_title
